@@ -3,15 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameControl : MonoBehaviour {
+public class GameControl : MonoBehaviour 
+{
 
-    [Header("Wave size and difirent asteroid types")]
+    public GameState currentState;
+
+    [Header("Wave size and difirent obstacles types")]
     public int WaveSize = 5;
-    public int AsteroidTypeCount;
+    public GameObject[] Obstacles;
 
     [SerializeField]
-    private List<GameObject> asteroidList;
-    [Header("Asteroid wave times and place")]
+    private List<GameObject> obstacleList;
+    private IObstacles obstacleTypes;
+
+    [Header("Obstacle wave times and place")]
     public float waveStart = 5;
     public float spawnWait = 1;
     public float waveWait = 3;
@@ -20,99 +25,131 @@ public class GameControl : MonoBehaviour {
 
     [SerializeField]
     private float offset = 5;
+    private float oneSecUpdate;
 
-    [Header("Score")]
-    private int mScore = 0;
-    public int Score
+    void Start ()
     {
-        get
-        {
-            return mScore;
-        }
-        set
-        {
-            mScore += value;
-        }
-    }
-    void Start () {
+
     }
 	
-	void Update () {
-        if (asteroidList.Count == 0)
-            FindAllAsteroids();
-    }
-
-    public void FindAllAsteroids()
+	void Update ()
     {
-        Transform[] trans = GameObject.Find("GameController").GetComponentsInChildren<Transform>(true);
-        foreach (Transform t in trans)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (t.gameObject.CompareTag("Asteroid"))
-            {
-                asteroidList.Add(t.gameObject);
-            }
+            if(currentState == GameState.PLAY)
+                currentState = GameState.PAUSE;
+
+            else if (currentState == GameState.PAUSE)
+                currentState = GameState.RESUME;
+        }
+
+        if(Time.time > oneSecUpdate)
+        {
+            oneSecUpdate = 1.0f + Time.time;
+            OneSecUpdate();
         }
     }
-    // return asteroids by name from list
-    private GameObject GetAsteroidByType(string type)
+
+    public void FindAllObstacles()
     {
-        for (int i = 0; i < asteroidList.Count; i++)
+        foreach (Transform child in transform)
         {
-            if (!asteroidList[i].activeInHierarchy)
+            obstacleList.Add(child.gameObject);
+        }
+    }
+
+    private GameObject GetObstaclesByType(ObstacleTypes type)
+    {
+        for (int i = 0; i < obstacleList.Count; i++)
+        {
+            if (!obstacleList[i].activeInHierarchy)
             {
-                if (asteroidList[i].GetComponent<Asteroid>().asteroidType.ToString() == type)
+                if (obstacleList[i].GetComponent<Obstacle>().obstacles == type)
                 {
-                    asteroidList[i].gameObject.SetActive(true);
-                    asteroidList[i].transform.position = new Vector3(UnityEngine.Random.Range(-spawnValuesX - offset, spawnValuesY), spawnValuesY, 0);
-                    return asteroidList[i];
+                    obstacleList[i].gameObject.SetActive(true);
+                    obstacleList[i].transform.position = new Vector3(UnityEngine.Random.Range(-spawnValuesX - offset, spawnValuesY), spawnValuesY, 0);
+                    return obstacleList[i];
                 }
             }
         }
         return null;
     }
 
-    IEnumerator SpawnAsteroids()
+    private void FixedUpdate()
     {
+        print(currentState);
+
+        if (obstacleList == null || obstacleList.Count == 0)
+            FindAllObstacles();
+    }
+
+    IEnumerator SpawnObstacles()
+    {
+        print("loop");
         yield return new WaitForSeconds(waveStart);
         while (true)
         {
             for (int i = 0; i < WaveSize; i++)
             {
-                int selection = UnityEngine.Random.Range(1, AsteroidTypeCount);
+                int selection = UnityEngine.Random.Range(0, Obstacles.Length);
                 switch (selection)
                 {
                     case 0:
-                        GetAsteroidByType("OreAsteroid");
+                        GetObstaclesByType(ObstacleTypes.Weed);
                         break;
                     case 1:
-                        GetAsteroidByType("SmallAsteroid");
+                        GetObstaclesByType(ObstacleTypes.Rock);
                         break;
                     case 2:
-                        GetAsteroidByType("MediumAsteroid");
-                        break;
-                    case 3:
-                        GetAsteroidByType("BigAsteroid");
+                        GetObstaclesByType(ObstacleTypes.Coral);
                         break;
                     default:
                         break;
                 }
                 yield return new WaitForSeconds(spawnWait);
             }
+            GetObstaclesByType(ObstacleTypes.Loot);
             yield return new WaitForSeconds(waveWait);
-            GetAsteroidByType("OreAsteroid");
-            for(int i = 0; i < asteroidList.Count; i++)
-            {
-                asteroidList[i].GetComponent<Asteroid>().speed++;
-            }
         }
     }
-    
-    private void OnGUI()
+    void OneSecUpdate()
     {
-        if (GUI.Button(new Rect(10, 10, 60, 20), "Wave"))
-            StartCoroutine(SpawnAsteroids());
-        string scroreString = mScore.ToString();
-        GUI.TextField(new Rect(10, 40, 60, 20), scroreString);
+        print("OneSecUpdate");
+        switch (currentState)
+        {
+            case GameState.MENU:
+                break;
+            case GameState.PLAY:
+                StartCoroutine(SpawnObstacles());
+                break;
+            case GameState.PAUSE:
+                PauseGame();
+                break;
+            case GameState.RESUME:
+                ResumeGame();
+                break;
+            case GameState.RESTART:
+                break;
+            default:
+                break;
+        }
     }
-    
+
+    void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+    void ResumeGame()
+    {
+        Time.timeScale = 1;
+    }
+}
+
+public enum GameState
+{
+    MENU,
+    PLAY,
+    PAUSE,
+    RESUME,
+    RESTART
 }

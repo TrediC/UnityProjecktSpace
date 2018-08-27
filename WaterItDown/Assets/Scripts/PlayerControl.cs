@@ -35,7 +35,7 @@ public class PlayerControl : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Asteroid"))
+        if (collision.gameObject.CompareTag("Obstacle"))
         {
             health -= damage;
 

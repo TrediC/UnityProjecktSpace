@@ -198,34 +198,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &455614104
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 455614105}
-  m_Layer: 0
-  m_Name: AmmoPool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &455614105
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 455614104}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &610307797
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +271,7 @@ Transform:
   m_LocalScale: {x: 416.4079, y: 415.6801, z: 3.316909}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &807976153
 GameObject:
@@ -340,7 +312,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &852417358
 GameObject:
@@ -406,7 +378,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -31.679, y: 0, z: 0}
 --- !u!1 &1940381249
 GameObject:
@@ -416,8 +388,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1940381250}
-  - component: {fileID: 1940381251}
   - component: {fileID: 1940381252}
+  - component: {fileID: 1940381251}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -436,7 +408,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1940381251
 MonoBehaviour:
@@ -446,13 +418,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1940381249}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fa6ab49c9ee77e4d918e832030d768e, type: 3}
+  m_Script: {fileID: 11500000, guid: e942c7cb6ee647449b9c550ad9964e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AsteroidList:
-  - {fileID: 1245237776423504, guid: 6f74e979633082f4abb0f9c14e66ab0c, type: 2}
-  - {fileID: 1833443001357192, guid: 7fa6ae7a9363f6840abcf3a4402b159b, type: 2}
-  - {fileID: 1763739368397802, guid: fa4e90141cca5934b8300011f71e09ad, type: 2}
+  amount: 10
 --- !u!114 &1940381252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,9 +433,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec3149f312ae6ad4e94aa7a85eab9a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   WaveSize: 5
-  AsteroidTypeCount: 4
-  asteroidList: []
+  Obstacles:
+  - {fileID: 1269238666502486, guid: 26176bc8e98f1d44d876c3c56f44bddc, type: 2}
   waveStart: 1
   spawnWait: 1
   waveWait: 2
@@ -510,13 +480,13 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4867311661915222, guid: 132db47118ba9c64782144e1f6b43cb5, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114743795955181060, guid: 132db47118ba9c64782144e1f6b43cb5,
         type: 2}
       propertyPath: AmmoPool
       value: 
-      objectReference: {fileID: 455614105}
+      objectReference: {fileID: 0}
     - target: {fileID: 54298668672516736, guid: 132db47118ba9c64782144e1f6b43cb5,
         type: 2}
       propertyPath: m_Constraints
