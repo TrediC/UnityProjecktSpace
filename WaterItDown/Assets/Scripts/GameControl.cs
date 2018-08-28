@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameControl : MonoBehaviour 
 {
     public string PlayerName;
     public GameState currentState;
+    public InputField inputName;
 
     [Header("Wave size and difirent obstacles types")]
     public int WaveSize = 5;
@@ -117,8 +120,6 @@ public class GameControl : MonoBehaviour
 
     private void FixedUpdate()
     {
-        print(currentState);
-
         if (obstacleList == null || obstacleList.Count == 0)
             FindAllObstacles();
     }
@@ -147,13 +148,23 @@ public class GameControl : MonoBehaviour
                 }
                 yield return new WaitForSeconds(spawnWait);
             }
-            GetObstaclesByType(ObstacleTypes.Loot);
+            //GetObstaclesByType(ObstacleTypes.Loot);
             yield return new WaitForSeconds(waveWait);
         }
     }
     void OneSecUpdate()
     {
-       
+        
+
+    }
+
+    public void SetPlayerName()
+    {
+        PlayerName = inputName.text;
+    }
+    public void ResetScore()
+    {
+        _score = 0;
     }
 
     void PauseGame()
@@ -161,9 +172,9 @@ public class GameControl : MonoBehaviour
         Time.timeScale = 0;
     }
 
-    public void SetState(GameState state)
+    public void StartGame()
     {
-        currentState = state;
+        currentState = GameState.PLAY;
     }
     public void ResumeGame()
     {

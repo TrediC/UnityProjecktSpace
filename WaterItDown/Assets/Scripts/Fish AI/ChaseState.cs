@@ -23,10 +23,7 @@ public class ChaseState : IEnemyState {
         enemy.currentState = enemy.alertState;
     }
 
-    public void ToChaseState()
-    {
-        // Tänne ei tuu mitään!
-    }
+    public void ToChaseState(){}
 
     public void ToPatrolState()
     {
@@ -38,17 +35,7 @@ public class ChaseState : IEnemyState {
         Look();
         Chase();
     }
-
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
+    
     private void Look()
     {
         Debug.DrawRay(enemy.eyes.transform.position,
@@ -75,8 +62,7 @@ public class ChaseState : IEnemyState {
 
         enemy.Indicator.material.color = Color.red;
         enemy.navMeshAgent.destination = enemy.chaseTarget.position;
-        enemy.navMeshAgent.Resume();
-
+        enemy.navMeshAgent.isStopped = false;
     }
 
 

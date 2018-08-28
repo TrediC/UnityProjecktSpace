@@ -7,11 +7,9 @@ public class PlayerControl : MonoBehaviour {
     private Rigidbody rb;
     private ObjectPooler op;
     private GameControl gc;
-    private float damage = 1;
 
     [Header ("Player Properties")]
     public float speed;
-    public float health = 5;
 
     private Vector3 pos;
 
@@ -24,6 +22,10 @@ public class PlayerControl : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
     }
 
+    private void Update()
+    {
+        
+    }
     void FixedUpdate () {
         MovePlayer();
         DoubleTap();
@@ -42,8 +44,6 @@ public class PlayerControl : MonoBehaviour {
         }
         if (taps >= 2)
         {
-            //TODO:
-
             gc.GetComponent<ScoreCalculate>().NewScore();
 
             timer = 0.0f;
@@ -77,10 +77,8 @@ public class PlayerControl : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            health -= damage;
-
-            if(damage <= 0)
-                Destroy(gameObject);
+            print("Obstacle");
+            gc.ResetScore();
         }
 
         if (collision.gameObject.CompareTag("Loot"))
@@ -91,11 +89,11 @@ public class PlayerControl : MonoBehaviour {
 
     private void DestroyGameObject(GameObject obj)
     {
-        obj.SetActive(false);
         if (obj.CompareTag("Loot"))
         {
             gc.Score = obj.GetComponent<Obstacle>().scoreAmount;
-            print("Score");
+            speed *= 0.75f;
         }
+        obj.SetActive(false);
     }
 }

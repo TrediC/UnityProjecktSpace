@@ -14,10 +14,20 @@ public class ScoreDisplay : MonoBehaviour {
         sc = GetComponent<ScoreCalculate>();        
     }
 
-    void Update()
+    void FixedUpdate()
     {
         score = sc.ShowScore();
-        CanvasText();
+
+        if (scoreText != null)
+        {
+            CanvasText();
+            
+        }
+        else
+        {
+            if (GetComponent<GameControl>().currentState == GameState.PLAY)
+                scoreText = GameObject.Find("ScoreField").GetComponent<Text>();
+        }
     }
 
     public void CanvasText()

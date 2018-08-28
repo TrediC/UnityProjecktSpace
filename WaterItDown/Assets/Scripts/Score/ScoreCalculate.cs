@@ -7,24 +7,22 @@ using System.Linq;
 
 public class ScoreCalculate : MonoBehaviour {
 
-    public GameObject player;
-
     private int score = 0;
     private GameControl gc;
     private List<string> scores = new List<string>();
     private ScoreHolder scoreHolder = new ScoreHolder();
 
-    void Start()
+    public void Start()
     {
         gc = gameObject.GetComponent<GameControl>();
-        player = GameObject.Find("Player");
         scoreHolder = JsonUtility.FromJson<ScoreHolder>(File.ReadAllText(Application.persistentDataPath + "/HighScore.json"));
-        AddScore();        
+        AddScore();
     }
 
     private void Update()
     {
         score = gc.Score;
+        print(score);
     }
 
     void AddScore()
@@ -34,7 +32,6 @@ public class ScoreCalculate : MonoBehaviour {
             scores = scoreHolder.HighScores;
             ScoreOrder();
         }
-
     }
     
     void ScoreOrder()

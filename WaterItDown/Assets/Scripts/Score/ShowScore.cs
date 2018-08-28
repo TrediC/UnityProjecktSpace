@@ -19,13 +19,11 @@ public class ShowScore : MonoBehaviour {
 	void Update () {       
 
     }
-    void ShowScores()
+    public void ShowScores()
     {
-        int i = 1;
         foreach (string score in scores)
         {
-            scoreField.text = i + ". " + score + "\n";
-            ++i;
+            scoreField.text = score + "\n";
         }
     }
 }
