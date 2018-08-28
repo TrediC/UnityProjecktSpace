@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameControl : MonoBehaviour 
 {
-
+    public string PlayerName;
     public GameState currentState;
 
     [Header("Wave size and difirent obstacles types")]
@@ -27,6 +27,24 @@ public class GameControl : MonoBehaviour
     private float offset = 5;
     private float oneSecUpdate;
 
+    private int _score = 0;
+    public int Score
+    {
+        get
+        {
+            return _score;
+        }
+        set
+        {
+            _score += value;
+        }
+    }
+
+    void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     void Start ()
     {
 
@@ -47,6 +65,28 @@ public class GameControl : MonoBehaviour
         {
             oneSecUpdate = 1.0f + Time.time;
             OneSecUpdate();
+        }
+
+        switch (currentState)
+        {
+            case GameState.MENU:
+                break;
+            case GameState.PLAY:
+                StartCoroutine(SpawnObstacles());
+                break;
+            case GameState.PAUSE:
+                PauseGame();
+                break;
+            case GameState.RESUME:
+                ResumeGame();
+                break;
+            case GameState.RESTART:
+                break;
+            case GameState.EXIT:
+                Exit();
+                break;
+            default:
+                break;
         }
     }
 
@@ -85,7 +125,6 @@ public class GameControl : MonoBehaviour
 
     IEnumerator SpawnObstacles()
     {
-        print("loop");
         yield return new WaitForSeconds(waveStart);
         while (true)
         {
@@ -114,34 +153,31 @@ public class GameControl : MonoBehaviour
     }
     void OneSecUpdate()
     {
-        print("OneSecUpdate");
-        switch (currentState)
-        {
-            case GameState.MENU:
-                break;
-            case GameState.PLAY:
-                StartCoroutine(SpawnObstacles());
-                break;
-            case GameState.PAUSE:
-                PauseGame();
-                break;
-            case GameState.RESUME:
-                ResumeGame();
-                break;
-            case GameState.RESTART:
-                break;
-            default:
-                break;
-        }
+       
     }
 
     void PauseGame()
     {
         Time.timeScale = 0;
     }
-    void ResumeGame()
+
+    public void SetState(GameState state)
+    {
+        currentState = state;
+    }
+    public void ResumeGame()
     {
         Time.timeScale = 1;
+        currentState = GameState.PLAY;
+    }
+
+    public void Exit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 }
 
@@ -151,5 +187,6 @@ public enum GameState
     PLAY,
     PAUSE,
     RESUME,
-    RESTART
+    RESTART,
+    EXIT
 }

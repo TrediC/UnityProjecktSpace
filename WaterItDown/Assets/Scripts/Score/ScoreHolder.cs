@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Obstacle : MonoBehaviour
+[System.Serializable]
+public class ScoreHolder
 {
-    public ObstacleTypes obstacles;
+    public List<string> HighScores;
 }
