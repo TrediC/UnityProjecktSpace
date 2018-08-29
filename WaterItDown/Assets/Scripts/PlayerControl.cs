@@ -33,6 +33,11 @@ public class PlayerControl : MonoBehaviour {
 
     private void DoubleTap()
     {
+        if(Input.GetButtonDown("Fire2"))
+        {
+            gc.SaveScore();
+            gc.ResetScore();
+        }
         if (Input.touchCount == 1)
         {
             Touch touch = Input.GetTouch(0);
