@@ -176,7 +176,7 @@ public class GameControl : MonoBehaviour
 
     public void SaveScore()
     {
-        GetComponent<ScoreCalculate>().SaveScore();
+        GetComponent<ScoreCalculate>().NewScore();
     }
 
     public void SetPlayerName()

@@ -22,7 +22,6 @@ public class ScoreCalculate : MonoBehaviour {
     private void Update()
     {
         score = gc.Score;
-        print(score);
     }
 
     void AddScore()

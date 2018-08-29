@@ -33,6 +33,13 @@ public class PlayerControl : MonoBehaviour {
 
     private void DoubleTap()
     {
+        if(Input.GetButtonDown("Fire2"))
+        {
+            gc.StopAllCoroutines();
+            gc.currentState = GameState.MENU;
+            gc.SaveScore();
+            GameObject.Find("GameController").GetComponent<SceneLoader>().LoadMenu();
+        }
         if (Input.touchCount == 1)
         {
             Touch touch = Input.GetTouch(0);
