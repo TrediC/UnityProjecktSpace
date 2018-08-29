@@ -125,6 +125,7 @@ public class GameControl : MonoBehaviour
     IEnumerator SpawnObstacles()
     {
         GameObject obj = null;
+        GameObject loot = null;
         Vector3 spawnPosition;
         yield return new WaitForSeconds(waveStart);
         for (int i = 0; i < WaveSize; i++)
@@ -144,17 +145,16 @@ public class GameControl : MonoBehaviour
                 default:
                     break;
             }
-            spawnPosition = new Vector3(UnityEngine.Random.Range(-spawnValuesX, spawnValuesX), spawnValuesY, 0.0f);
+            spawnPosition = new Vector3(UnityEngine.Random.Range(-spawnValuesX, spawnValuesX), UnityEngine.Random.Range(spawnValuesY, spawnValuesY * 2), 0.0f);
             if(obj != null)
                 obj.transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
             yield return new WaitForSeconds(spawnWait);
         }
         yield return new WaitForSeconds(waveWait);
-        obj = ObstaclesByType(ObstacleTypes.Loot);
-        spawnPosition = new Vector3(UnityEngine.Random.Range(-spawnValuesX, spawnValuesX), spawnValuesY, 0.0f);
-        if (obj != null)
-            obj.transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
-
+        loot = ObstaclesByType(ObstacleTypes.Loot);
+        spawnPosition = new Vector3(UnityEngine.Random.Range(-spawnValuesX, spawnValuesX), UnityEngine.Random.Range(spawnValuesY, spawnValuesY * 2), 0.0f);
+        if (loot != null)
+            loot.transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
     }
     void OneSecUpdate()
     {
