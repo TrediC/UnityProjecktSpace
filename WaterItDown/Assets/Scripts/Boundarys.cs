@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class Boundarys : MonoBehaviour {
 
-    private void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Obstacle") || other.gameObject.CompareTag("Loot"))
-        {
+        if (other.gameObject.CompareTag("Loot") || other.gameObject.CompareTag("Obstacle"))
             other.gameObject.SetActive(false);
-        }
     }
 }

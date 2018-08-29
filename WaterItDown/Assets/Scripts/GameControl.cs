@@ -100,7 +100,7 @@ public class GameControl : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnType(ObstacleTypes type)
+    GameObject ObstaclesByType(ObstacleTypes type)
     {
         for (int i = 0; i < obstacleList.Count; ++i)
         {
@@ -108,12 +108,12 @@ public class GameControl : MonoBehaviour
             {
                 if(!obstacleList[i].activeInHierarchy)
                 {
-                    obstacleList[i].transform.position = new Vector3(UnityEngine.Random.Range(-spawnValuesX - offset, spawnValuesY), spawnValuesY, 0);
                     obstacleList[i].gameObject.SetActive(true);
-                    yield return new WaitForSeconds(spawnWait);
+                    return obstacleList[i].gameObject;
                 }
             }
         }
+        return null;
     }
 
     private void FixedUpdate()
@@ -124,31 +124,37 @@ public class GameControl : MonoBehaviour
 
     IEnumerator SpawnObstacles()
     {
+        GameObject obj = null;
+        Vector3 spawnPosition;
         yield return new WaitForSeconds(waveStart);
-        while (true)
+        for (int i = 0; i < WaveSize; i++)
         {
-            for (int i = 0; i < WaveSize; i++)
+            int selection = UnityEngine.Random.Range(0, Obstacles.Length);
+            switch (selection)
             {
-                int selection = UnityEngine.Random.Range(0, Obstacles.Length);
-                switch (selection)
-                {
-                    case 0:
-                        StartCoroutine(SpawnType(ObstacleTypes.Weed));
-                        break;
-                    case 1:
-                        StartCoroutine(SpawnType(ObstacleTypes.Rock));
-                        break;
-                    case 2:
-                        StartCoroutine(SpawnType(ObstacleTypes.Coral));
-                        break;
-                    default:
-                        break;
-                }
-                yield return new WaitForSeconds(spawnWait);
+                case 0:
+                    obj = ObstaclesByType(ObstacleTypes.Weed);
+                    break;
+                case 1:
+                    ObstaclesByType(ObstacleTypes.Rock);
+                    break;
+                case 2:
+                    ObstaclesByType(ObstacleTypes.Coral);
+                    break;
+                default:
+                    break;
             }
-            //GetObstaclesByType(ObstacleTypes.Loot);
-            yield return new WaitForSeconds(waveWait);
+            spawnPosition = new Vector3(UnityEngine.Random.Range(-spawnValuesX, spawnValuesX), spawnValuesY, 0.0f);
+            if(obj != null)
+                obj.transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
+            yield return new WaitForSeconds(spawnWait);
         }
+        yield return new WaitForSeconds(waveWait);
+        obj = ObstaclesByType(ObstacleTypes.Loot);
+        spawnPosition = new Vector3(UnityEngine.Random.Range(-spawnValuesX, spawnValuesX), spawnValuesY, 0.0f);
+        if (obj != null)
+            obj.transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
+
     }
     void OneSecUpdate()
     {

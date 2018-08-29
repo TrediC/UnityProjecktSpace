@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:WaterItDown/Assets/Graphics/drone.png.meta
 guid: 073eab7d0e93843b1b26b87efd2bddd9
+=======
+guid: 4235a9de6337b4a13baf357b6fa7e92c
+>>>>>>> eccbb76b49e839b281bd7e8ae401617879062878:WaterItDown/Assets/Graphics/drone.png.meta
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}
@@ -75,7 +79,11 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
+<<<<<<< HEAD:WaterItDown/Assets/Graphics/drone.png.meta
     spriteID: 51050a3e31a0746e7a3c3c3e05f4f5df
+=======
+    spriteID: 82613d59ebda6424d95975b5e02ad755
+>>>>>>> eccbb76b49e839b281bd7e8ae401617879062878:WaterItDown/Assets/Graphics/drone.png.meta
     vertices: []
     indices: 
     edges: []

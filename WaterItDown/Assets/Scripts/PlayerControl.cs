@@ -78,17 +78,17 @@ public class PlayerControl : MonoBehaviour {
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Obstacle"))
+        if (other.gameObject.CompareTag("Obstacle"))
         {
             print("Obstacle");
             gc.ResetScore();
         }
 
-        if (collision.gameObject.CompareTag("Loot"))
+        if (other.gameObject.CompareTag("Loot"))
         {
-            DestroyGameObject(collision.gameObject);
+            DestroyGameObject(other.gameObject);
         }
     }
 
@@ -97,7 +97,7 @@ public class PlayerControl : MonoBehaviour {
         if (obj.CompareTag("Loot"))
         {
             gc.Score = obj.GetComponent<Obstacle>().scoreAmount;
-            speed *= 0.75f;
+            speed *= 0.85f;
         }
         obj.SetActive(false);
     }
