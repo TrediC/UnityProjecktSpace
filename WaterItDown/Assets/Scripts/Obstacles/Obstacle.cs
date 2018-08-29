@@ -15,12 +15,12 @@ public class Obstacle : MonoBehaviour
         transform.Translate(Vector3.down * Time.deltaTime);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        print("Loot");
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
             gameObject.SetActive(false);
         }
     }
+
 }
