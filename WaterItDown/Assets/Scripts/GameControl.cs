@@ -100,21 +100,20 @@ public class GameControl : MonoBehaviour
         }
     }
 
-    private GameObject GetObstaclesByType(ObstacleTypes type)
+    IEnumerator SpawnType(ObstacleTypes type)
     {
-        for (int i = 0; i < obstacleList.Count; i++)
+        for (int i = 0; i < obstacleList.Count; ++i)
         {
-            if (!obstacleList[i].activeInHierarchy)
+            if(obstacleList[i].GetComponent<Obstacle>().obstacles == type)
             {
-                if (obstacleList[i].GetComponent<Obstacle>().obstacles == type)
+                if(!obstacleList[i].activeInHierarchy)
                 {
-                    obstacleList[i].gameObject.SetActive(true);
                     obstacleList[i].transform.position = new Vector3(UnityEngine.Random.Range(-spawnValuesX - offset, spawnValuesY), spawnValuesY, 0);
-                    return obstacleList[i];
+                    obstacleList[i].gameObject.SetActive(true);
+                    yield return new WaitForSeconds(spawnWait);
                 }
             }
         }
-        return null;
     }
 
     private void FixedUpdate()
@@ -134,13 +133,13 @@ public class GameControl : MonoBehaviour
                 switch (selection)
                 {
                     case 0:
-                        GetObstaclesByType(ObstacleTypes.Weed);
+                        StartCoroutine(SpawnType(ObstacleTypes.Weed));
                         break;
                     case 1:
-                        GetObstaclesByType(ObstacleTypes.Rock);
+                        StartCoroutine(SpawnType(ObstacleTypes.Rock));
                         break;
                     case 2:
-                        GetObstaclesByType(ObstacleTypes.Coral);
+                        StartCoroutine(SpawnType(ObstacleTypes.Coral));
                         break;
                     default:
                         break;
@@ -168,6 +167,7 @@ public class GameControl : MonoBehaviour
 
     void PauseGame()
     {
+        GameObject.Find("PauseMenu").SetActive(true);
         Time.timeScale = 0;
     }
 
@@ -177,6 +177,7 @@ public class GameControl : MonoBehaviour
     }
     public void ResumeGame()
     {
+        GameObject.Find("PauseMenu").SetActive(false);
         Time.timeScale = 1;
         currentState = GameState.PLAY;
     }

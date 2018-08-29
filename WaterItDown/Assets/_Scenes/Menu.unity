@@ -2471,9 +2471,9 @@ MonoBehaviour:
   - {fileID: 1269238666502486, guid: 26176bc8e98f1d44d876c3c56f44bddc, type: 2}
   - {fileID: 1457573065661454, guid: b15d51398a3ffa441b5c5bf2cf30c795, type: 2}
   obstacleList: []
-  waveStart: 1
+  waveStart: 0.5
   spawnWait: 1
-  waveWait: 2
+  waveWait: 0.5
   spawnValuesX: 7
   spawnValuesY: 20
   offset: 5
