@@ -85,7 +85,7 @@ public class PlayerControl : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Obstacle"))
+        if (other.gameObject.CompareTag("Obstacle") || other.gameObject.CompareTag("Fish"))
         {
             gc.ResetScore();
             gc.GetComponent<SceneLoader>().LoadMenu();

@@ -38,31 +38,25 @@ public class ChaseState : IEnemyState {
     
     private void Look()
     {
-        Debug.DrawRay(enemy.eyes.transform.position,
-            enemy.eyes.transform.forward * enemy.sightRange,
-            Color.green);
-
-        RaycastHit hit;
-        Vector3 enemyToTarget = enemy.chaseTarget.position - enemy.eyes.transform.position;
-        if (Physics.Raycast(enemy.eyes.transform.position,
-            enemyToTarget, out hit, enemy.sightRange)
-            && hit.collider.CompareTag("Player"))
+        Collider[] hitColliders = Physics.OverlapSphere(enemy.transform.position, enemy.detectRange);
+        int i = 0;
+        while (i < hitColliders.Length)
         {
-            enemy.chaseTarget = hit.transform;
-        }
-        else
-        {
-            ToAlertState();
+            if (hitColliders[i].CompareTag("Player"))
+                enemy.chaseTarget = hitColliders[i].transform;
+            else
+                ToAlertState();
 
+            i++;
         }
+
 
     }
 
-    private void Chase(){
-
-        enemy.Indicator.material.color = Color.red;
-        enemy.navMeshAgent.destination = enemy.chaseTarget.position;
-        enemy.navMeshAgent.isStopped = false;
+    private void Chase()
+    {
+        enemy.rb.MovePosition(Vector3.LerpUnclamped(enemy.transform.position, enemy.chaseTarget.position,
+            Time.deltaTime / Vector3.Distance(enemy.transform.position, enemy.chaseTarget.position) * 2f));
     }
 
 

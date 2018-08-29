@@ -6,10 +6,10 @@ public class StatePatternEnemy : MonoBehaviour {
 
     public float searchingTurnSpeed = 50f;
     public float searchingDuration = 2f;
-    public float sightRange = 15f;
+    public float detectRange = 5.0f;
     public Transform[] wayPoints;
     public Transform eyes;
-    public MeshRenderer Indicator;
+    public Rigidbody rb;
 
     [HideInInspector] public Transform chaseTarget;
     [HideInInspector] public Transform lastTargetPosition;
@@ -19,32 +19,38 @@ public class StatePatternEnemy : MonoBehaviour {
     [HideInInspector] public PatrolState patrolState;
 
 
-    [HideInInspector] public UnityEngine.AI.NavMeshAgent navMeshAgent; 
-
-
     private void Awake()
     {
         patrolState = new PatrolState(this);
         alertState = new AlertState(this);
         chaseState = new ChaseState(this);
 
-        navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
-
-    // Use this for initialization
-    void Start () {
-
-        currentState = patrolState; 
-		
-	}
+    
+    void Start ()
+    {
+        rb = GetComponent<Rigidbody>();
+        currentState = patrolState;
+    }
 	
-	// Update is called once per frame
-	void Update () {
-
+	void Update ()
+    {
+        DedectPlayer();
         currentState.UpdateState();
-       // Debug.Log(currentState);
-
+        print(currentState);
 	}
+
+    void DedectPlayer()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, detectRange);
+        int i = 0;
+        while (i < hitColliders.Length)
+        {
+            if (hitColliders[i].CompareTag("Player") && currentState != chaseState)
+                currentState = alertState;
+            i++;
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {

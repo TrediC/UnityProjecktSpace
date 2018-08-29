@@ -40,51 +40,28 @@ public class AlertState : IEnemyState {
 
     public void UpdateState()
     {
-        Search();
-        Look();
+        MoveToContactPoint();
     }
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-        
-	}
-
-    private void Search()
+    private void MoveToContactPoint()
     {
-        enemy.Indicator.material.color = Color.yellow;
-        enemy.navMeshAgent.isStopped = true;
-        enemy.transform.Rotate(0, enemy.searchingTurnSpeed * Time.deltaTime, 0);
-        searchTimer += Time.deltaTime; 
-
-        if(searchTimer >= enemy.searchingDuration)
+        searchTimer = Time.time + enemy.searchingDuration;
+        Collider[] hitColliders = Physics.OverlapSphere(enemy.transform.position, enemy.detectRange * 0.75f);
+        int i = 0;
+        while (i < hitColliders.Length)
         {
-            ToPatrolState();
+            if (hitColliders[i].CompareTag("Player"))
+            {
+                enemy.rb.MovePosition(Vector3.LerpUnclamped(enemy.transform.position, hitColliders[i].transform.position,
+            Time.deltaTime / Vector3.Distance(enemy.transform.position, hitColliders[i].transform.position)));
+                enemy.chaseTarget = hitColliders[i].transform;
+                ToChaseState();
+            }
+            if(searchTimer > Time.time)
+            {
+                ToPatrolState();
+            }
+            i++;
         }
-
-
     }
-
-    private void Look()
-    {
-        Debug.DrawRay(enemy.eyes.transform.position,
-            enemy.eyes.transform.forward * enemy.sightRange,
-            Color.green);
-
-        RaycastHit hit;
-        if (Physics.Raycast(enemy.eyes.transform.position,
-            enemy.eyes.transform.forward, out hit, enemy.sightRange)
-            && hit.collider.CompareTag("Player"))
-        {
-            enemy.chaseTarget = hit.transform;
-            ToChaseState();
-        }
-
-    }
-
 }

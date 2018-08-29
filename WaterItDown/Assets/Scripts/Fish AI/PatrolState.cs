@@ -16,8 +16,6 @@ public class PatrolState : IEnemyState {
     public void UpdateState()
     {
         Patrol();
-        Look();
-        
     }
 
     public void OnEnemyTrigger(Collider other)
@@ -43,51 +41,17 @@ public class PatrolState : IEnemyState {
 
     public void ToChaseState()
     {
-        Debug.Log("Lähdetään jahtaamaan");
         enemy.currentState = enemy.chaseState;
-
-
     }
-    // Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
+    
     void Patrol()
     {
-        enemy.Indicator.material.color = Color.green;
-        enemy.navMeshAgent.destination = enemy.wayPoints[nextWayPoint].position;
-        enemy.navMeshAgent.isStopped = false;
-
-        if(enemy.navMeshAgent.remainingDistance <= enemy.navMeshAgent.stoppingDistance 
-            && !enemy.navMeshAgent.pathPending)
+        enemy.rb.MovePosition(Vector3.LerpUnclamped(enemy.transform.position, enemy.wayPoints[nextWayPoint].position, 
+            Time.deltaTime / Vector3.Distance(enemy.transform.position, enemy.wayPoints[nextWayPoint].position)));
+       
+        if(Vector3.Distance(enemy.transform.position, enemy.wayPoints[nextWayPoint].position) < 1)
         {
             nextWayPoint = (nextWayPoint + 1) % enemy.wayPoints.Length;
-
         }
-
     }
-
-    private void Look()
-    {
-        Debug.DrawRay(enemy.eyes.transform.position, 
-            enemy.eyes.transform.forward*enemy.sightRange, 
-            Color.green);
-
-        RaycastHit hit;
-        if(Physics.Raycast(enemy.eyes.transform.position, 
-            enemy.eyes.transform.forward, out hit, enemy.sightRange) 
-            && hit.collider.CompareTag("Player"))
-        {
-            enemy.chaseTarget = hit.transform;
-            ToChaseState();
-        }
-
-    }
-
 }

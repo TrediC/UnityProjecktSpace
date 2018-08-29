@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Obstacle
   - Loot
+  - waypoint
+  - Fish
   layers:
   - Default
   - TransparentFX
