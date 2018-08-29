@@ -137,22 +137,34 @@ public class GameControl : MonoBehaviour
                     obj = ObstaclesByType(ObstacleTypes.Weed);
                     break;
                 case 1:
-                    ObstaclesByType(ObstacleTypes.Rock);
+                    obj = ObstaclesByType(ObstacleTypes.Weed1);
                     break;
                 case 2:
-                    ObstaclesByType(ObstacleTypes.Coral);
+                    obj = ObstaclesByType(ObstacleTypes.Rock);
+                    break;
+                case 3:
+                    obj = ObstaclesByType(ObstacleTypes.Rock2);
+                    break;
+                case 4:
+                    obj = ObstaclesByType(ObstacleTypes.Rock3);
+                    break;
+                case 5:
+                    obj = ObstaclesByType(ObstacleTypes.Rock4);
+                    break;
+                case 6:
+                    obj = ObstaclesByType(ObstacleTypes.Coral);
                     break;
                 default:
                     break;
             }
-            spawnPosition = new Vector3(UnityEngine.Random.Range(-spawnValuesX, spawnValuesX), UnityEngine.Random.Range(spawnValuesY, spawnValuesY * 2), 0.0f);
+            spawnPosition = new Vector3(UnityEngine.Random.Range(-spawnValuesX, spawnValuesX), UnityEngine.Random.Range(spawnValuesY, spawnValuesY * 3), 0.0f);
             if(obj != null)
                 obj.transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
             yield return new WaitForSeconds(spawnWait);
         }
         yield return new WaitForSeconds(waveWait);
         loot = ObstaclesByType(ObstacleTypes.Loot);
-        spawnPosition = new Vector3(UnityEngine.Random.Range(-spawnValuesX, spawnValuesX), UnityEngine.Random.Range(spawnValuesY, spawnValuesY * 2), 0.0f);
+        spawnPosition = new Vector3(UnityEngine.Random.Range(-spawnValuesX + offset, spawnValuesX - offset), UnityEngine.Random.Range(spawnValuesY, spawnValuesY * 4), 0.0f);
         if (loot != null)
             loot.transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
     }

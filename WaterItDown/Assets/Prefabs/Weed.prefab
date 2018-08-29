@@ -19,10 +19,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4120570615651054}
-  - component: {fileID: 135236903475697706}
   - component: {fileID: 114272833649290464}
   - component: {fileID: 54416061833946332}
   - component: {fileID: 212449219983378002}
+  - component: {fileID: 135479624833650202}
   m_Layer: 0
   m_Name: Weed
   m_TagString: Obstacle
@@ -71,7 +71,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreAmount: 0
   obstacles: 0
---- !u!135 &135236903475697706
+--- !u!135 &135479624833650202
 SphereCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}

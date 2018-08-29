@@ -14,7 +14,8 @@ public enum ObstacleTypes
     Rock = 2,
     Rock2 = 3,
     Rock3 = 4,
-    Coral = 5,
-    Loot = 6,
+    Rock4 = 5,
+    Coral = 6,
+    Loot = 7
 }
 
