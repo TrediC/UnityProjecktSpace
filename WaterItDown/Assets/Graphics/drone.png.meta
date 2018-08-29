@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:WaterItDown/Assets/Graphics/drone.png.meta
 guid: 073eab7d0e93843b1b26b87efd2bddd9
-=======
-guid: 4235a9de6337b4a13baf357b6fa7e92c
->>>>>>> eccbb76b49e839b281bd7e8ae401617879062878:WaterItDown/Assets/Graphics/drone.png.meta
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}
@@ -40,7 +36,7 @@ TextureImporter:
     mipBias: -100
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -73,17 +69,35 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites: []
     outline: []
     physicsShape: []
     bones: []
-<<<<<<< HEAD:WaterItDown/Assets/Graphics/drone.png.meta
-    spriteID: 51050a3e31a0746e7a3c3c3e05f4f5df
-=======
-    spriteID: 82613d59ebda6424d95975b5e02ad755
->>>>>>> eccbb76b49e839b281bd7e8ae401617879062878:WaterItDown/Assets/Graphics/drone.png.meta
+    spriteID: 
     vertices: []
     indices: 
     edges: []

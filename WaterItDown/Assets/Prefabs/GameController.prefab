@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1150652543638230}
+  m_IsPrefabAsset: 1
+--- !u!1 &1150652543638230
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4089810958507320}
+  - component: {fileID: 114099503436565910}
+  - component: {fileID: 114389885043764396}
+  - component: {fileID: 114065428064063878}
+  - component: {fileID: 114020477878353750}
+  - component: {fileID: 114134772302583784}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4089810958507320
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1150652543638230}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114020477878353750
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1150652543638230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 198874fb8c7cc9248a2401d21d535ebe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 0}
+--- !u!114 &114065428064063878
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1150652543638230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af8fb9b6a486f514a8c8121421e8d56c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114099503436565910
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1150652543638230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec3149f312ae6ad4e94aa7a85eab9a25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerName: TrediC
+  currentState: 0
+  inputName: {fileID: 0}
+  WaveSize: 5
+  Obstacles:
+  - {fileID: 1269238666502486, guid: 26176bc8e98f1d44d876c3c56f44bddc, type: 2}
+  - {fileID: 1457573065661454, guid: b15d51398a3ffa441b5c5bf2cf30c795, type: 2}
+  obstacleList: []
+  waveStart: 0
+  spawnWait: 2.5
+  waveWait: 1
+  spawnValuesX: 20
+  spawnValuesY: 20
+  offset: 0
+--- !u!114 &114134772302583784
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1150652543638230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10379910e8e11ab4282455abe04b1433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114389885043764396
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1150652543638230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e942c7cb6ee647449b9c550ad9964e96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: 10
