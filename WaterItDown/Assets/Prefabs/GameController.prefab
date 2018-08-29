@@ -81,13 +81,18 @@ MonoBehaviour:
   PlayerName: TrediC
   currentState: 0
   inputName: {fileID: 0}
-  WaveSize: 5
+  WaveSize: 10
   Obstacles:
-  - {fileID: 1269238666502486, guid: 26176bc8e98f1d44d876c3c56f44bddc, type: 2}
   - {fileID: 1457573065661454, guid: b15d51398a3ffa441b5c5bf2cf30c795, type: 2}
+  - {fileID: 1055738545280396, guid: 3644c396873121b4d88f332b3beaf87f, type: 2}
+  - {fileID: 1008757889402114, guid: 79d268cbeac084644abe86da29ed3a9f, type: 2}
+  - {fileID: 1198965379298174, guid: 9e41d6ff545ccbe4881c6ed210005cd2, type: 2}
+  - {fileID: 1212965862135876, guid: 415a6294f9f9a1846b3282e166531371, type: 2}
+  - {fileID: 1269238666502486, guid: 26176bc8e98f1d44d876c3c56f44bddc, type: 2}
+  - {fileID: 1464263101772648, guid: c41506613236e1240b18b221ef246c80, type: 2}
   obstacleList: []
   waveStart: 0
-  spawnWait: 2.5
+  spawnWait: 2
   waveWait: 1
   spawnValuesX: 20
   spawnValuesY: 20
@@ -114,4 +119,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e942c7cb6ee647449b9c550ad9964e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 10
+  amount: 7

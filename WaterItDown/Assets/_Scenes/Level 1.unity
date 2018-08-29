@@ -695,48 +695,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1007778195}
   m_CullTransparentMesh: 0
---- !u!1001 &1347049049
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4785298602865304, guid: 3644c396873121b4d88f332b3beaf87f, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4785298602865304, guid: 3644c396873121b4d88f332b3beaf87f, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4785298602865304, guid: 3644c396873121b4d88f332b3beaf87f, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4785298602865304, guid: 3644c396873121b4d88f332b3beaf87f, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4785298602865304, guid: 3644c396873121b4d88f332b3beaf87f, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4785298602865304, guid: 3644c396873121b4d88f332b3beaf87f, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4785298602865304, guid: 3644c396873121b4d88f332b3beaf87f, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4785298602865304, guid: 3644c396873121b4d88f332b3beaf87f, type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3644c396873121b4d88f332b3beaf87f, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &1840365450
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,8 +808,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 22, y: 35, z: 5}
-  m_Center: {x: 0, y: 1.5, z: 0}
+  m_Size: {x: 32.889423, y: 36.555634, z: 5}
+  m_Center: {x: 0, y: 2.2778168, z: 0}
 --- !u!4 &1849303792
 Transform:
   m_ObjectHideFlags: 0
