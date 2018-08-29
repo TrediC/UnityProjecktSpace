@@ -86,7 +86,6 @@ public class GameControl : MonoBehaviour
             case GameState.RESTART:
                 break;
             case GameState.EXIT:
-                Exit();
                 break;
             default:
                 break;
@@ -180,15 +179,6 @@ public class GameControl : MonoBehaviour
     {
         Time.timeScale = 1;
         currentState = GameState.PLAY;
-    }
-
-    public void Exit()
-    {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
     }
 }
 

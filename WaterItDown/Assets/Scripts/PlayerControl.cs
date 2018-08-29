@@ -33,28 +33,33 @@ public class PlayerControl : MonoBehaviour {
 
     private void DoubleTap()
     {
-        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began || Input.GetButtonDown("Fire2"))
+        if (Input.touchCount == 1)
         {
-            Debug.Log("Double tap");
-            ++taps;
-        }
-        if (taps > 0)
-        {
-            timer += Time.deltaTime;
-        }
-        if (taps >= 2)
-        {
-            gc.GetComponent<ScoreCalculate>().NewScore();
+            Touch touch = Input.GetTouch(0);
 
-            timer = 0.0f;
-            taps = 0;
+            if (touch.phase == TouchPhase.Ended)
+            {
+                taps += 1;
+            }
+
+            if (taps == 1)
+            {
+
+                timer = Time.time + 1.0f;
+            }
+            else if (taps == 2 && Time.time <= timer)
+            {
+                gc.ResetScore();
+                taps = 0;
+            }
+
         }
-        if (timer > 0.5f)
+        if (Time.time > timer)
         {
-            timer = 0f;
             taps = 0;
         }
     }
+
 
     private void MovePlayer()
     {
