@@ -31,7 +31,6 @@ public class PatrolState : IEnemyState {
 
     public void ToPatrolState()
     {
-        // Tähän ei tule mitään!
 
     }
 
@@ -63,7 +62,7 @@ public class PatrolState : IEnemyState {
     {
         enemy.Indicator.material.color = Color.green;
         enemy.navMeshAgent.destination = enemy.wayPoints[nextWayPoint].position;
-        enemy.navMeshAgent.Resume();
+        enemy.navMeshAgent.isStopped = false;
 
         if(enemy.navMeshAgent.remainingDistance <= enemy.navMeshAgent.stoppingDistance 
             && !enemy.navMeshAgent.pathPending)

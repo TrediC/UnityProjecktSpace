@@ -17,6 +17,7 @@ public class Obstacle : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        print("Loot");
         if (collision.gameObject.CompareTag("Player"))
         {
             gameObject.SetActive(false);
