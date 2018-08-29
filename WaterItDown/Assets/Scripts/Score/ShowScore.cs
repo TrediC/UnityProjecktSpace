@@ -21,9 +21,12 @@ public class ShowScore : MonoBehaviour {
     }
     public void ShowScores()
     {
+        string temp = "";
         foreach (string score in scores)
         {
-            scoreField.text = score + "\n";
+            Debug.Log(score);
+            temp += score + "\n";
+            scoreField.text = temp;
         }
     }
 }

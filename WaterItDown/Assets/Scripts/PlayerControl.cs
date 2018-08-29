@@ -35,10 +35,8 @@ public class PlayerControl : MonoBehaviour {
     {
         if(Input.GetButtonDown("Fire2"))
         {
-            gc.StopAllCoroutines();
-            gc.currentState = GameState.MENU;
             gc.SaveScore();
-            GameObject.Find("GameController").GetComponent<SceneLoader>().LoadMenu();
+            gc.ResetScore();
         }
         if (Input.touchCount == 1)
         {

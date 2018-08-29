@@ -186,6 +186,12 @@ public class GameControl : MonoBehaviour
     public void ResetScore()
     {
         _score = 0;
+        foreach(Transform t in GetComponentsInChildren<Transform>())
+        {
+            t.gameObject.SetActive(false);
+        }
+        GetComponent<SceneLoader>().LoadMenu();
+        currentState = GameState.MENU;
     }
 
     void PauseGame()

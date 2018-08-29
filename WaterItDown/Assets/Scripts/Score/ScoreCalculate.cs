@@ -53,6 +53,11 @@ public class ScoreCalculate : MonoBehaviour {
         string jsonData = JsonUtility.ToJson(scoreHolder, true);
         File.WriteAllText(Application.persistentDataPath + "/HighScore.json", jsonData);
         Debug.Log("Score saved");
+
+        foreach(string x in scoreHolder.HighScores)
+        {
+            Debug.Log(x + "\n");
+        }
     }
 
     public int ShowScore()
