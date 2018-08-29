@@ -44,12 +44,12 @@ public class PlayerControl : MonoBehaviour {
 
             if (taps == 1)
             {
-
-                timer = Time.time + 1.0f;
+                timer = Time.time + 0.5f;
             }
             else if (taps == 2 && Time.time <= timer)
             {
-                gc.ResetScore();
+                gc.SaveScore();
+                GameObject.Find("GameController").GetComponent<SceneLoader>().LoadMenu();
                 taps = 0;
             }
 
@@ -82,8 +82,8 @@ public class PlayerControl : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Obstacle"))
         {
-            print("Obstacle");
             gc.ResetScore();
+            gc.GetComponent<SceneLoader>().LoadMenu();
         }
 
         if (other.gameObject.CompareTag("Loot"))

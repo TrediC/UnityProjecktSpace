@@ -174,6 +174,11 @@ public class GameControl : MonoBehaviour
 
     }
 
+    public void SaveScore()
+    {
+        GetComponent<ScoreCalculate>().SaveScore();
+    }
+
     public void SetPlayerName()
     {
         PlayerName = inputName.text;
