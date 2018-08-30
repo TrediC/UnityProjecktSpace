@@ -24,7 +24,11 @@ public class PlayerControl : MonoBehaviour {
 
     private void Update()
     {
-        
+        if(gc == null)
+        {
+            gc = GameObject.Find("GameController").GetComponent<GameControl>();
+            rb = GetComponent<Rigidbody>();
+        }
     }
     void FixedUpdate () {
         MovePlayer();
@@ -51,7 +55,7 @@ public class PlayerControl : MonoBehaviour {
             {
                 timer = Time.time + 0.5f;
             }
-            else if (taps == 2 && Time.time <= timer)
+            else if (taps == 10 && Time.time <= timer)
             {
                 gc.SaveScore();
                 GameObject.Find("GameController").GetComponent<SceneLoader>().LoadMenu();
