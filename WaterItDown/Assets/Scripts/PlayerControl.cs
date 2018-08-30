@@ -57,9 +57,10 @@ public class PlayerControl : MonoBehaviour {
             }
             else if (taps == 10 && Time.time <= timer)
             {
-                gc.SaveScore();
-                GameObject.Find("GameController").GetComponent<SceneLoader>().LoadMenu();
                 taps = 0;
+
+                gc.SaveScore();
+                gc.ResetScore();
             }
 
         }
