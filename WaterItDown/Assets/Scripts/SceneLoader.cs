@@ -7,13 +7,13 @@ public class SceneLoader : MonoBehaviour {
 
     public void LoadMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void LoadLevel()
     {
-        SceneManager.LoadScene(1);
-        GetComponent<GameControl>().currentState = GameState.PLAY;
+        GetComponent<GameControl>().StartGame();
+        SceneManager.LoadScene(2);
     }
 
 }
