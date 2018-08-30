@@ -188,7 +188,15 @@ public class GameControl : MonoBehaviour
         _score = 0;
         currentState = GameState.MENU;
 
-        StartCoroutine(GameEnd());
+        int i = 0;
+        foreach (Transform t in GetComponentsInChildren<Transform>())
+        {
+            t.gameObject.SetActive(false);
+            ++i;
+        }
+        this.gameObject.SetActive(true);
+
+        StartCoroutine(EndGame());
     }
 
     void PauseGame()
@@ -208,21 +216,17 @@ public class GameControl : MonoBehaviour
         currentState = GameState.PLAY;
     }
 
-    IEnumerator GameEnd()
+    IEnumerator EndGame()
     {
-        anim = Camera.main.GetComponent<Animator>();
+        var light = GameObject.Find("Directional light");
 
-        anim.SetTrigger("EndRound");
-
-        yield return new WaitForSeconds(3.0f);
-
-        int i = 0;
-        foreach (Transform t in GetComponentsInChildren<Transform>())
+        float intens = light.gameObject.GetComponent<Light>().intensity;
+        while(intens > 0)
         {
-            t.gameObject.SetActive(false);
-            ++i;
+            intens -= 0.01f;
+            light.gameObject.GetComponent<Light>().intensity = intens;
         }
-        this.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.2f);
         GetComponent<SceneLoader>().LoadMenu();
     }
 }
