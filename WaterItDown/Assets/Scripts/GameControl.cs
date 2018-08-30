@@ -220,11 +220,12 @@ public class GameControl : MonoBehaviour
     {
         var light = GameObject.Find("Directional light");
 
-        float intens = light.gameObject.GetComponent<Light>().intensity;
-        while(intens > 0)
+        var img = GameObject.Find("EndScreen").GetComponent<Image>();
+        var end = img.color;
+        while (end.a > 255)
         {
-            intens -= 0.01f;
-            light.gameObject.GetComponent<Light>().intensity = intens;
+            end.a += 0.1f;
+            img.color = end;
         }
         yield return new WaitForSeconds(0.2f);
         GetComponent<SceneLoader>().LoadMenu();
