@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Animations;
 
 public class GameControl : MonoBehaviour 
 {
@@ -29,6 +28,7 @@ public class GameControl : MonoBehaviour
     [SerializeField]
     private float offset = 5;
     private float oneSecUpdate;
+    private Animator anim;
 
     private int _score = 0;
     public int Score
@@ -186,15 +186,9 @@ public class GameControl : MonoBehaviour
     public void ResetScore()
     {
         _score = 0;
-        int i = 0;
-        foreach(Transform t in GetComponentsInChildren<Transform>())
-        {
-            t.gameObject.SetActive(false);
-            ++i;
-        }
-        this.gameObject.SetActive(true);
-        GetComponent<SceneLoader>().LoadMenu();
         currentState = GameState.MENU;
+
+        StartCoroutine(GameEnd());
     }
 
     void PauseGame()
@@ -212,6 +206,24 @@ public class GameControl : MonoBehaviour
         GameObject.Find("PauseMenu").SetActive(false);
         Time.timeScale = 1;
         currentState = GameState.PLAY;
+    }
+
+    IEnumerator GameEnd()
+    {
+        anim = Camera.main.GetComponent<Animator>();
+
+        anim.SetTrigger("EndRound");
+
+        yield return new WaitForSeconds(3.0f);
+
+        int i = 0;
+        foreach (Transform t in GetComponentsInChildren<Transform>())
+        {
+            t.gameObject.SetActive(false);
+            ++i;
+        }
+        this.gameObject.SetActive(true);
+        GetComponent<SceneLoader>().LoadMenu();
     }
 }
 
