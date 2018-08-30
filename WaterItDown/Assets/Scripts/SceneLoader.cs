@@ -12,7 +12,7 @@ public class SceneLoader : MonoBehaviour {
 
     public void LoadLevel()
     {
-        GetComponent<GameControl>().StartGame();
+        GameObject.Find("GameController").GetComponent<GameControl>().StartGame();
         SceneManager.LoadScene(2);
     }
 
