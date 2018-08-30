@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Animations;
 
 public class GameControl : MonoBehaviour 
 {
     public string PlayerName;
     public GameState currentState;
-    public InputField inputName;
 
     [Header("Wave size and difirent obstacles types")]
     public int WaveSize = 5;
@@ -179,9 +177,10 @@ public class GameControl : MonoBehaviour
         GetComponent<ScoreCalculate>().NewScore();
     }
 
-    public void SetPlayerName()
+    public void SetPlayerName(string name)
     {
-        PlayerName = inputName.text;
+        PlayerName = name;
+;
     }
     public void ResetScore()
     {
