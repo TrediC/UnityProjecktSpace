@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114272833649290464}
   - component: {fileID: 54416061833946332}
   - component: {fileID: 212449219983378002}
-  - component: {fileID: 135479624833650202}
+  - component: {fileID: 65083146434285164}
   m_Layer: 0
   m_Name: Weed
   m_TagString: Obstacle
@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1269238666502486}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -3.12, y: 4.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -58,6 +58,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65083146434285164
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1269238666502486}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3, y: 3.04, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114272833649290464
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -71,18 +83,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreAmount: 0
   obstacles: 0
---- !u!135 &135479624833650202
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1269238666502486}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &212449219983378002
 SpriteRenderer:
   m_ObjectHideFlags: 1
