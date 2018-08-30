@@ -189,9 +189,10 @@ public class GameControl : MonoBehaviour
         int i = 0;
         foreach(Transform t in GetComponentsInChildren<Transform>())
         {
-            t.GetChild(i).gameObject.SetActive(false);
+            t.gameObject.SetActive(false);
             ++i;
         }
+        this.gameObject.SetActive(true);
         GetComponent<SceneLoader>().LoadMenu();
         currentState = GameState.MENU;
     }
