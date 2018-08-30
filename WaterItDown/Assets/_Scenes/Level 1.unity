@@ -561,8 +561,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dd7023c1d2816a4186cbc591fa18a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: 5
-  tileSizeX: 80
+  scrollSpeed: 2
+  tileSizeX: 81.9
 --- !u!212 &259079455
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -851,8 +851,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dd7023c1d2816a4186cbc591fa18a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: 5
-  tileSizeX: 80
+  scrollSpeed: 2
+  tileSizeX: 81.9
 --- !u!1 &644875070
 GameObject:
   m_ObjectHideFlags: 0
@@ -1168,8 +1168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dd7023c1d2816a4186cbc591fa18a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: 5
-  tileSizeX: 80
+  scrollSpeed: 2
+  tileSizeX: 81.9
 --- !u!212 &1110120976
 SpriteRenderer:
   m_ObjectHideFlags: 0
