@@ -42,7 +42,13 @@ public class ScoreCalculate : MonoBehaviour {
 
     public void NewScore()
     {
-        string value = score + " " + gc.PlayerName;
+        string scoreString = "0";
+        var temp = score.ToString().Length;
+        for (int i = 0; i < (6-temp); ++i)
+        {
+            scoreString += "0";
+        }
+        string value = scoreString + score + " " + gc.PlayerName;
         scores.Add(value);
         ScoreOrder();
     }

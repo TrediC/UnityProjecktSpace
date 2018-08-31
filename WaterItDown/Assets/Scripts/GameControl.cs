@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Animations;
 
 public class GameControl : MonoBehaviour 
 {
     public string PlayerName;
     public GameState currentState;
-    public InputField inputName;
 
     [Header("Wave size and difirent obstacles types")]
     public int WaveSize = 5;
@@ -179,23 +177,15 @@ public class GameControl : MonoBehaviour
         GetComponent<ScoreCalculate>().NewScore();
     }
 
-    public void SetPlayerName()
+    public void SetPlayerName(string name)
     {
-        PlayerName = inputName.text;
+        PlayerName = name;
+;
     }
     public void ResetScore()
     {
-        _score = 0;
         currentState = GameState.MENU;
-
-        int i = 0;
-        foreach (Transform t in GetComponentsInChildren<Transform>())
-        {
-            t.gameObject.SetActive(false);
-            ++i;
-        }
-        this.gameObject.SetActive(true);
-
+        
         StartCoroutine(EndGame());
     }
 
@@ -222,12 +212,22 @@ public class GameControl : MonoBehaviour
 
         var img = GameObject.Find("EndScreen").GetComponent<Image>();
         var end = img.color;
-        while (end.a > 255)
+        while (end.a < 255)
         {
-            end.a += 0.1f;
+            end.a += 0.01f * Time.deltaTime;
             img.color = end;
         }
         yield return new WaitForSeconds(0.2f);
+        int i = 0;
+        foreach (Transform t in GetComponentsInChildren<Transform>())
+        {
+            t.gameObject.SetActive(false);
+            ++i;
+        }
+        this.gameObject.SetActive(true);
+
+        _score = 0;
+
         GetComponent<SceneLoader>().LoadMenu();
     }
 }
