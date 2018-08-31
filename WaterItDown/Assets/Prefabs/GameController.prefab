@@ -80,7 +80,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerName: TrediC
   currentState: 0
-  inputName: {fileID: 0}
   WaveSize: 10
   Obstacles:
   - {fileID: 1457573065661454, guid: b15d51398a3ffa441b5c5bf2cf30c795, type: 2}
@@ -94,8 +93,8 @@ MonoBehaviour:
   waveStart: 0
   spawnWait: 2
   waveWait: 1
-  spawnValuesX: 20
-  spawnValuesY: 20
+  spawnValuesX: 14
+  spawnValuesY: 40
   offset: 0
 --- !u!114 &114134772302583784
 MonoBehaviour:
